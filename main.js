@@ -8,9 +8,4 @@ let secondnumber =Math.floor(realnumber / 1000 % 10)
 let firstnumber =Math.floor(realnumber / 10000 % 10)
 
 console.log( realnumber);
-console.log(fifthnumber);
-console.log(forthnumber);
-console.log(thirdnumber);
-console.log(secondnumber);
-console.log(firstnumber);
-console.log('${realnumber} ${fifthnumber} ${forthnumber} ${thirdnumber} ${secondnumber} ${firstnumber}')
+console.log(` ${firstnumber} ${secondnumber} ${thirdnumber} ${forthnumber} ${fifthnumber}`)
