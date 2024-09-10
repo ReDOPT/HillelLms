@@ -2,26 +2,22 @@ let userAge = prompt("enter a age");
 let userCity = prompt("enter a city");
 let userSport = prompt("your favorite sport");
 
+
+
 if (userAge == null ) {
     console.log(`It’s a pity that you didn’t want to enter your age`);
 }else {
-    console.log(`your age ${userAge}`)
+    console.log(`your age ${2024-userAge}`)
 }
 
 if (userCity == null ) {
     console.log(`It’s a pity that you didn’t want to enter your city`);
-}else if ( userCity === `Kiev`
-    ||
-    userCity === `Washington`
-    ||
-    userCity === `London`
-    ||
-    userCity === `Вашингтон`
-    ||
-    userCity === `Київ`
-    ||
-    userCity === `Лондон`  ){
-    console.log(`you live in the capital ${userCity}`)
+}else if ( userCity === `Kiev`){
+    console.log(`you live in the capital Ukraine`)
+}else if ( userCity === `Washington`){
+    console.log(`you live in the capital USA`)
+}else if ( userCity === `London`){
+    console.log(`you live in the capital England`)
 }else{
     console.log(`do you live in the city ${userCity}`)
 }
