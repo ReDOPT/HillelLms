@@ -7,7 +7,7 @@ let userSport = prompt("your favorite sport");
 if (userAge == null ) {
     console.log(`It’s a pity that you didn’t want to enter your age`);
 }else {
-    console.log(`your age ${userAge-2024}`)
+    console.log(`your age ${2024-userAge}`)
 }
 
 if (userCity == null ) {
