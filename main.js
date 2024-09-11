@@ -1,5 +1,9 @@
 let n = prompt(`number N`)
 
+if (n===null || n===``){
+    console.log(`Hажаль вы не надали число N`)
+}
+
 let squareOfTheNumber = n*=n
 console.log(squareOfTheNumber)
 console.log()
