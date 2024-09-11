@@ -1,11 +1,26 @@
-let n = prompt(`number N`)
+let number = prompt(`Enter number`)
 
-let squareOfTheNumber = n*=n
-console.log(squareOfTheNumber)
-console.log()
+let detector=null
 
-for ( let i=1 ; i<=squareOfTheNumber ; i++ ){
-    if ( i<= 100 && i%2 === 0 ){
-        console.log(i)
+for (let i=1; i<=7;i++) {
+    if(number<2){
+        console.log(`число не э простим`)
+        break
+    }else if ( i === 4 || i === 6 ){
+        i++
     }
+
+
+    if( number / i === 1 ) {
+        detector =true
+        console.log(`число є простим`)
+        break
+    }else  {
+         detector =false
+
+    }
+}
+
+if (detector===false){
+    console.log(`число не э простим`)
 }
