@@ -1,5 +1,8 @@
 let number = prompt(`Enter number`)
 
+if (n===null || n===``){
+    console.log(`Hажаль вы не надали число number`)
+}
 
 for (let i=1; i<=number;i++) {
     if(number===null){
