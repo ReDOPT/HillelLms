@@ -1,19 +1,17 @@
-let str =prompt(`Enter sting`,`hello world`)
-let deletLeter =prompt(`first letter to delete`)
-let deletLeterT =prompt(`second letter to delete`)
+let arr =[25,true,34,null,26,`rieg`,`rgg`,45,`ngon`,53];
 
-let strArray =str.split(``)
+function add(arr){
+    let numberOfNumbers=0;
+    let sumNumbers = 0;
+    for(let i=0 ; i < arr.length ; i++){
+        if(/^\d+$/.test(arr[i])){
+            sumNumbers=sumNumbers+arr[i];
+            numberOfNumbers++
+        }else {
 
-for (let i = 0; i < strArray.length  ; i++) {
-    if (deletLeter === `` || deletLeterT === `` || deletLeterT === null) {
-        `Ви не ввели букви для видалення`
-        break
-    }else if (strArray[i] === deletLeter) {
-        strArray[i] =``
-    }else if (strArray[i] === deletLeterT) {
-        strArray[i] =``
+        }
     }
+    console.log(Math.floor(sumNumbers/numberOfNumbers));
 }
-let arrayStr = strArray.join(``)
-console.log(strArray)
-console.log(arrayStr)
+
+let result = add(arr);
