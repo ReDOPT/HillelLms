@@ -1,10 +1,8 @@
 function myCounter() {
     let counter =0;
-    let i = 0
     return function (number){
 
         counter += number;
-        i ++
 
         console.log (counter);
     }
