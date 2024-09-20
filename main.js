@@ -1,11 +1,9 @@
-let number = [ 4,6,10,7,]
-
-function myCounter(){
+function myCounter() {
     let counter =0;
     let i = 0
-    return function (){
+    return function (number){
 
-        counter += number[i];
+        counter += number;
         i ++
 
         console.log (counter);
@@ -13,7 +11,7 @@ function myCounter(){
 }
 const counter = myCounter();
 
-counter();
-counter();
-counter();
-counter();
+counter(4);
+counter(6);
+counter(10);
+counter(7);
