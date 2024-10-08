@@ -1,4 +1,6 @@
-#text-block {
-    font-size: 24px;
-    color: black;
+#random-image {
+    width: 300px; /* Размер изображения можно настроить */
+    height: auto;
+    display: block;
+    margin: 20px auto;
 }

@@ -1,12 +1,8 @@
-const textBlock = document.getElementById('text-block');
-const colorButton = document.getElementById('color-button');
-let isOriginalColor = true;
+// Получаем случайное число от 1 до 9
+const randomNumber = Math.floor(Math.random() * 9) + 1;
 
-colorButton.addEventListener('click', function() {
-    if (isOriginalColor) {
-        textBlock.style.color = 'red';
-    } else {
-        textBlock.style.color = 'black';
-    }
-    isOriginalColor = !isOriginalColor;
-});
+// Формируем путь к случайному изображению
+const imagePath = randomNumber + '.jpg';
+
+// Устанавливаем случайное изображение в тэг <img>
+document.getElementById('random-image').src = imagePath;
