@@ -1,4 +1,10 @@
-#text-block {
-    font-size: 24px;
-    color: black;
+#mydiv {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+}
+#mydiv>button {
+    width: 20%;
+    height: 40px;
 }
