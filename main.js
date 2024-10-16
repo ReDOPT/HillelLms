@@ -10,12 +10,12 @@ function validateForm() {
     }
 
     if(!/^.{5,}$/.test(message.userMessage)){
-        document.querySelector("#message_error").innerHTML ="message is a required field!";
+        document.querySelector("#message_error").innerHTML ="Message must be at least 5 characters!";
         isValid = false;
     }
 
     if(!/^\+380\d{9}$/.test(message.userePhone)){
-        document.querySelector("#number_error").innerHTML ="Number is a required field!";
+        document.querySelector("#number_error").innerHTML ="Phone number must start with +380 and be followed by 9 digits!";
         isValid = false;
     }
 
