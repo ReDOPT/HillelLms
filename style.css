@@ -1,6 +1,63 @@
-#random-image {
-    width: 300px; /* Размер изображения можно настроить */
-    height: auto;
-    display: block;
-    margin: 20px auto;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: rgb(230,24,87);
+}
+h2{
+    font-size: 15px;
+    color: #c1bfc3;
+    margin-bottom: 0px;
+}
+.message{
+    background: #f6f5f9;
+    border-radius: 20px;
+    background: #f6f5f9;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding-bottom:20px ;
+}
+
+.message__div{
+    display: flex;
+    flex-direction:column ;
+    width: 80%;
+}
+.message__div_button{
+    display: flex;
+    justify-content: center;
+}
+.message__input{
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px ;
+    padding: 10px;
+    color: black;
+}
+.message__input:nth-child(3){
+    height: 80px;
+}
+.message__button{
+    margin-top: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 1000;
+    padding: 20px ;
+    border: none;
+    color: white;
+    background: #24a4ff;
+    border-radius: 10px;
+    width: 90%;
+}
+.error{
+    font-size:10px;
+    color: red;
+    padding-left: 8px;
 }
