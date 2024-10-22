@@ -6,10 +6,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="mydiv">
-    <button>button 1</button>
-    <button>button 2</button>
-    <button>button 3</button>
+<div class="slider">
+    <div class="slides">
+        <div class="slide">Слайд 1</div>
+        <div class="slide">Слайд 2</div>
+        <div class="slide">Слайд 3</div>
+    </div>
+    <button class="nav-button prev" onclick="moveSlide(-1)">Prev</button>
+    <button class="nav-button next" onclick="moveSlide(1)">Next</button>
+</div>
+
+<div class="dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
 </div>
 
 
