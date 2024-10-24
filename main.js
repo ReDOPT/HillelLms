@@ -56,7 +56,7 @@ addTodoBtn.addEventListener('click', (e) => {
 
     if (userInput.trim() !== "") {
         createTodoItem(userInput, false);
-        todoSave.push({ text: userInput, checked});
+        todoSave.push({ text: userInput, checked: false });
         saveTodoToLocalStorage();
         userInput = "";
         todoInput.value = "";
@@ -81,14 +81,6 @@ function deleteTodoFromLocalStorage(todoText) {
 
 
 function loadTodos() {
-    todoSave = JSON.parse(localStorage.getItem('todo-save')) || [];
-
-
-    if (!Array.isArray(todoSave)) {
-        todoSave = [];
-    }
-
-
     todoSave.forEach(todo => {
         createTodoItem(todo.text, todo.checked);
     });
