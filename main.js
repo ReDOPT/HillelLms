@@ -1,90 +1,24 @@
-const todoInput = document.querySelector(".js--form__input");
-const addTodoBtn = document.querySelector(".form__btn");
-const todoList = document.querySelector(".js--todos-wrapper");
+class Coach {
 
-let userInput = "";
+    #Coach;
+    #Specialization;
+    #Rating;
 
-
-let todoSave = JSON.parse(localStorage.getItem('todo-save')) || [];
-
-
-function createTodoItem(todoText, isChecked) {
-    const newTodo = document.createElement('li');
-    newTodo.classList.add("todo-item");
-
-
-    const inputChecBox = document.createElement("input");
-    inputChecBox.type = "checkbox";
-    inputChecBox.checked = isChecked;
-
-
-    const spanTodo = document.createElement("span");
-    spanTodo.classList.add("todo-item__description");
-    spanTodo.textContent = todoText;
-
-    if (isChecked) {
-        spanTodo.classList.add("todo-item--checked");
+    constructor(Coach,Specialization,Rating) {
+        this.#Coach =Coach;
+        this.#Specialization =Specialization;
+        this.#Rating =Rating;
     }
 
-    inputChecBox.addEventListener("change", (e) => {
-        if (e.target.checked) {
-            spanTodo.classList.add("todo-item--checked");
-        } else {
-            spanTodo.classList.remove("todo-item--checked");
-        }
-        saveTodoToLocalStorage();
-    });
-
-    const buttonDelete = document.createElement("button");
-    buttonDelete.classList.add("todo-item__delete");
-    buttonDelete.textContent = "видалити";
-
-    buttonDelete.addEventListener('click', (e) => {
-        e.target.parentNode.remove();
-        deleteTodoFromLocalStorage(todoText);
-    });
-
-    newTodo.appendChild(inputChecBox);
-    newTodo.appendChild(spanTodo);
-    newTodo.appendChild(buttonDelete);
-    todoList.appendChild(newTodo);
-}
-
-
-addTodoBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    if (userInput.trim() !== "") {
-        createTodoItem(userInput, false);
-        todoSave.push({ text: userInput, checked: false });
-        saveTodoToLocalStorage();
-        userInput = "";
-        todoInput.value = "";
+    displayInfo(){
+        return console.log(`Coach:${this.#Coach}, Specialization:${this.#Specialization}, Rating:${this.#Rating}`)
     }
-});
-
-
-todoInput.addEventListener('input', (e) => {
-    userInput = e.target.value;
-});
-
-
-function saveTodoToLocalStorage() {
-    localStorage.setItem('todo-save', JSON.stringify(todoSave));
 }
 
+const coach1 = new Coach('John Doe', 'Fitness', 4.7);
 
-function deleteTodoFromLocalStorage(todoText) {
-    todoSave = todoSave.filter(todo => todo.text !== todoText);
-    saveTodoToLocalStorage();
-}
+const coach2 = new Coach('Alice Smith', 'Yoga', 4.9);
 
+coach1.displayInfo(); // "Coach: John Doe, Specialization: Fitness, Rating: 4.7"
 
-function loadTodos() {
-    todoSave.forEach(todo => {
-        createTodoItem(todo.text, todo.checked);
-    });
-}
-
-
-loadTodos();
+coach2.displayInfo(); // "Coach: Alice Smith, Specialization: Yoga, Rating: 4.9"
