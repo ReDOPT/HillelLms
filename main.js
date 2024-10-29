@@ -1,90 +1,33 @@
-const todoInput = document.querySelector(".js--form__input");
-const addTodoBtn = document.querySelector(".form__btn");
-const todoList = document.querySelector(".js--todos-wrapper");
+class BankAccount {
 
-let userInput = "";
+    #Balance;
 
-
-let todoSave = JSON.parse(localStorage.getItem('todo-save')) || [];
-
-
-function createTodoItem(todoText, isChecked) {
-    const newTodo = document.createElement('li');
-    newTodo.classList.add("todo-item");
-
-
-    const inputChecBox = document.createElement("input");
-    inputChecBox.type = "checkbox";
-    inputChecBox.checked = isChecked;
-
-
-    const spanTodo = document.createElement("span");
-    spanTodo.classList.add("todo-item__description");
-    spanTodo.textContent = todoText;
-
-    if (isChecked) {
-        spanTodo.classList.add("todo-item--checked");
+    constructor(balance) {
+        this.#Balance = balance;
     }
 
-    inputChecBox.addEventListener("change", (e) => {
-        if (e.target.checked) {
-            spanTodo.classList.add("todo-item--checked");
-        } else {
-            spanTodo.classList.remove("todo-item--checked");
-        }
-        saveTodoToLocalStorage();
-    });
-
-    const buttonDelete = document.createElement("button");
-    buttonDelete.classList.add("todo-item__delete");
-    buttonDelete.textContent = "видалити";
-
-    buttonDelete.addEventListener('click', (e) => {
-        e.target.parentNode.remove();
-        deleteTodoFromLocalStorage(todoText);
-    });
-
-    newTodo.appendChild(inputChecBox);
-    newTodo.appendChild(spanTodo);
-    newTodo.appendChild(buttonDelete);
-    todoList.appendChild(newTodo);
-}
-
-
-addTodoBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    if (userInput.trim() !== "") {
-        createTodoItem(userInput, false);
-        todoSave.push({ text: userInput, checked: false });
-        saveTodoToLocalStorage();
-        userInput = "";
-        todoInput.value = "";
+    getBalance(){
+        return (`Balance:${this.#Balance}`)
     }
-});
 
+    deposit(deposit){
+        this.#Balance =this.#Balance + deposit;
+    }
 
-todoInput.addEventListener('input', (e) => {
-    userInput = e.target.value;
-});
+    withdraw(withdraw){
+        this.#Balance =this.#Balance - withdraw
+    }
 
-
-function saveTodoToLocalStorage() {
-    localStorage.setItem('todo-save', JSON.stringify(todoSave));
 }
 
+const account1 = new BankAccount(1000);
 
-function deleteTodoFromLocalStorage(todoText) {
-    todoSave = todoSave.filter(todo => todo.text !== todoText);
-    saveTodoToLocalStorage();
-}
+console.log(account1.getBalance()); // 1000
 
+account1.deposit(500);
 
-function loadTodos() {
-    todoSave.forEach(todo => {
-        createTodoItem(todo.text, todo.checked);
-    });
-}
+console.log(account1.getBalance()); // 1500
 
+account1.withdraw(200);
 
-loadTodos();
+console.log(account1.getBalance()); // 1300
