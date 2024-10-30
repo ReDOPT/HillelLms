@@ -1,21 +1,38 @@
-let stringnamber =prompt("enter a five-digit number");
-let realnumber = +stringnamber
+const textSpan = document.querySelector('#span')
 
-let thirdnumber =realnumber % 10
-let secondnumber =Math.floor(realnumber / 10 % 10)
-let firstnumber =Math.floor(realnumber / 100 % 10)
+function timer(timeSeconds){
+    let totalSeconds = timeSeconds;
+    let timerId = null;
 
-if(thirdnumber === secondnumber && thirdnumber === firstnumber ){
-    console.log(`Всі цифри однакові`)
-}else if(
-    thirdnumber === secondnumber || thirdnumber === firstnumber || secondnumber === firstnumber
-) {
-    console.log(`є однакові цифри`)
+    createTimer()
 
-}else {
-    console.log(`немає однакових цифр`)
+    function createTimer(){
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+
+        const formattedMinutes = String(minutes).padStart(2, '0');
+        const formattedSeconds = String(seconds).padStart(2, '0');
+
+        textSpan.textContent=`${formattedMinutes}:${formattedSeconds}`;
+    }
+
+    document.querySelector('#start').addEventListener('click', ()=>{
+        timerId = setInterval(()=>{
+            totalSeconds--;
+
+            if(totalSeconds<=0){
+                clearInterval(timerId)
+            }
+
+            createTimer()
+        },1000);
+    });
+
+    document.querySelector('#stop').addEventListener('click',()=>{
+        if(timerId){
+            clearInterval(timerId)
+        }
+    });
 }
 
-
-
-console.log( realnumber);
+timer(250)
