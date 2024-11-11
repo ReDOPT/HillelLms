@@ -1,35 +1,88 @@
-const apiKey = 'ee400c6d91424c6f74cfb33b985ed7fd';
-const lat = 48.4500000;
-const lon = 34.9833300;
+fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
+    .then(response => response.json())
+    .then(posts => {
 
-const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-};
+        posts.forEach(post => {
 
-function updateWeather() {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=ru`;
+            displayPost(post);
+        });
+    })
+    .catch(error => console.log('Error fetching posts:', error));
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('city').textContent = `${data.name}, ${data.sys.country}`;
-            document.getElementById('date').textContent = `${new Date(data.dt*1000).toLocaleDateString("en-us",options)}`;
-            document.getElementById('time').textContent = `${new Date(data.dt*1000).toLocaleTimeString([], {timeZone:"Europe/Kiev",hour: "2-digit", minute: "2-digit", timeZoneName:"short"},)}`;
-            console.log(data.dt)
-            document.getElementById('temp').textContent = `${Math.round(data.main.temp)}°C`;
-            document.getElementById('feels-like').textContent = `Ощущается как: ${Math.round(data.main.feels_like)}°C`;
-            document.getElementById('description').textContent = data.weather[0].description;
-            document.getElementById('humidity').textContent = `Влажность: ${data.main.humidity}%`;
-            document.getElementById('pressure').textContent = `Давление: ${data.main.pressure} гПа`;
-            document.getElementById('wind').textContent = `Ветер: ${data.wind.speed} м/с, ${data.wind.deg}°`;
-            document.getElementById('icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        })
-        .catch(error => console.log('Ошибка:', error));
+function displayPost(post) {
+    const postContainer = document.getElementById('post-list');
+    const postElement = document.createElement('div');
+    postElement.classList.add('post');
+    postElement.innerHTML = `
+    <h3>${post.title}</h3>
+    <p>${post.body}</p>
+    <button onclick="loadComments(${post.id})">Завантажити коментарі</button>
+    <div id="comments-${post.id}"></div>
+  `;
+    postContainer.appendChild(postElement);
 }
-document.getElementById('button').addEventListener("click",(e)=>{
-    updateWeather()
-})
 
-updateWeather();
+function loadComments(postId) {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments?_limit=2`)
+        .then(response => response.json())
+        .then(comments => {
+            const commentsContainer = document.getElementById(`comments-${postId}`);
+            commentsContainer.innerHTML = '';
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('comment');
+                commentElement.innerHTML = `
+          <p><strong>${comment.name}</strong> (${comment.email})</p>
+          <p>${comment.body}</p>
+        `;
+                commentsContainer.appendChild(commentElement);
+            });
+        })
+        .catch(error => console.log('Error fetching comments:', error));
+}
+
+function loadComments(postId) {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments?_limit=2`)
+        .then(response => response.json())
+        .then(comments => {
+            const commentsContainer = document.getElementById(`comments-${postId}`);
+            commentsContainer.innerHTML = '';
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('comment');
+                commentElement.innerHTML = `
+          <p><strong>${comment.name}</strong> (${comment.email})</p>
+          <p>${comment.body}</p>
+        `;
+                commentsContainer.appendChild(commentElement);
+            });
+        })
+        .catch(error => console.log('Error fetching comments:', error));
+}
+
+document.getElementById('new-post-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const body = document.getElementById('body').value;
+
+    const newPost = {
+        title,
+        body,
+        userId: 1
+    };
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPost)
+    })
+        .then(response => response.json())
+        .then(post => {
+            alert('Пост створено успішно');
+            displayPost(post);
+        })
+        .catch(error => console.log('Error creating post:', error));
+});
