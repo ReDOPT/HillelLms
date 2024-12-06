@@ -52,7 +52,7 @@ async function pushTodo(e) {
 
 function rendertodo(todo) {
     const todoList = document.querySelector('.todo__ul--js');
-    todoList.innerHTML = ''; // Очищаем список перед рендерингом
+    todoList.innerHTML = '';
 
     todo.forEach((task) => {
         const todoItem = document.createElement('li');
@@ -81,7 +81,7 @@ function rendertodo(todo) {
 
         const completeButton = todoItem.querySelector('.edit');
         completeButton.addEventListener('click', () => {
-            markTodoAsCompleted(task.id, !task.readiness); // Переключение статуса
+            markTodoAsCompleted(task.id, !task.readiness);
         });
     });
 }
