@@ -1,4 +1,5 @@
 import React from 'react';
+import TopEmoji from './TopEmoji';
 
 class EmojiList extends React.Component {
     constructor(props) {
@@ -6,6 +7,7 @@ class EmojiList extends React.Component {
 
         this.state = {
             emojis: [],
+            showTopEmoji: false,
         };
     }
 
@@ -36,23 +38,33 @@ class EmojiList extends React.Component {
                     : emoji
             ),
         }));
-    }
+    };
 
+    toggleShowTopEmoji = () => {
+        this.setState((prevState) => ({
+            showTopEmoji: !prevState.showTopEmoji,
+        }));
+    };
 
     render() {
-        console.log(this.state.emoji);
         return (
             <div>
                 <h1>Emoji List</h1>
                 <ul>
-                    {this.state.emoji.map((emoji) => (
+                    {this.state.emojis.map((emoji) => (
                         <li key={emoji.id}>
-                            <img src={emoji.src} alt={`Emoji ${emoji.id}`} width="50"/>
-                            <p>ID: {emoji.id}, Likes: {emoji.like}</p>
+                            <img src={emoji.src} alt={`Emoji ${emoji.id}`} width="50" />
+                            <p>Likes: {emoji.like}</p>
                             <button onClick={() => this.handleLike(emoji.id)}>Like</button>
                         </li>
                     ))}
                 </ul>
+
+                <button onClick={this.toggleShowTopEmoji}>
+                    {this.state.showTopEmoji ? 'Hide Top Emojis' : 'Show Top Emojis'}
+                </button>
+
+                {this.state.showTopEmoji && <TopEmoji emojis={this.state.emojis} />}
             </div>
         );
     }
