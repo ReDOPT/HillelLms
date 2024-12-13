@@ -1,10 +1,10 @@
 import React from "react";
-import Counter from "./componet/Counter";
+import EmojiList from "./componet/EmojiList";
 
 function App() {
   return (
     <div className="App">
-      <Counter />
+      <EmojiList />
     </div>
   );
 }
