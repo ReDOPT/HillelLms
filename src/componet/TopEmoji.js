@@ -24,3 +24,4 @@ const TopEmoji = ({ emojis }) => {
 };
 
 export default TopEmoji;
+
